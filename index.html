@@ -1,21 +1,549 @@
-<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111216"><meta name="apple-mobile-web-app-capable" content="yes"><title>Radwetter Schmölln</title><style>:root{color-scheme:dark;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,sans-serif}*{box-sizing:border-box}body{margin:0;background:#101114;color:#f3f1eb}main{max-width:540px;margin:auto;padding:calc(18px + env(safe-area-inset-top)) 16px calc(38px + env(safe-area-inset-bottom))}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.eyebrow{font-size:10px;letter-spacing:3px;color:#b9bac0;font-weight:750}.logo{font-size:18px;font-weight:850;letter-spacing:-1px}.bike{width:44px;height:44px;flex:none;display:grid;place-items:center;border:1px solid #52555b;border-radius:13px;background:#292b30;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.bike:active{transform:scale(.95)}.bike:disabled{opacity:.55}.bike:focus-visible{outline:2px solid #f3f1eb;outline-offset:3px}.bike svg{width:25px;height:25px;stroke:#f3f1eb;fill:none;stroke-width:1.8}h1{font-size:18px;font-weight:850;line-height:1.2;letter-spacing:-1px;margin:10px 0}.subtitle{font-size:13px;color:#b8b9be;line-height:1.7}.hero{background:linear-gradient(125deg,#fff 0%,#e9e7e1 47%,#c9cbd0 100%);color:#151619;padding:18px;border-radius:24px;margin:14px 0;box-shadow:inset 0 1px 0 #fff}.hero .eyebrow{color:#555962}.heroTemps{text-align:right;font-size:10px;line-height:1.9;color:#555962;white-space:nowrap}.heroTemps b{font-size:16px;color:#151619;margin-left:5px}.herohead{display:flex;justify-content:space-between;align-items:center}.score{font-size:54px;font-weight:900;letter-spacing:-5px;line-height:1.1}.score span{font-size:19px;letter-spacing:0;color:#5d6065}.verdict{font-size:19px;font-weight:850;letter-spacing:.3px}.track{height:7px;background:#bfc0c1;border-radius:8px;overflow:hidden;margin:16px 0 12px}.fill{height:100%;background:#22252b;border-radius:8px;transition:width .4s}.note{font-size:13px;color:#45484e;line-height:1.5}.weektitle{font-size:12px;font-weight:800;letter-spacing:2px;margin:18px 0 12px}.week{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.day{background:#292b30;border:1px solid #383b40;color:#fff;border-radius:15px;padding:10px 3px;text-align:center;min-width:0;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.day.active{background:#f0eee8;color:#16171a;border-color:#fff}.day .label{font-size:11px;font-weight:800;letter-spacing:1px}.day .num{font-size:18px;font-weight:850;margin:11px 0 3px}.day .mini{font-size:10px;opacity:.75}.day .temps{display:flex;flex-direction:column;gap:3px;align-items:flex-end;margin:8px 4px 0;font-size:9px;font-weight:750;white-space:nowrap}.day .temps span{opacity:.8}.day .temps b{font-weight:850}.day .bar{height:3px;background:#777b82;border-radius:3px;margin:12px 8px 0;overflow:hidden}.day .bar i{display:block;height:100%;background:#d8d5cd}.day.active .bar i{background:#1c1e22}.tomorrow{margin-top:20px;background:#eceae4;color:#151619;border-radius:22px;padding:19px}.tomorrow .eyebrow{color:#555962}.tomorrow h2{margin:7px 0 16px;font-size:22px}.tomorrow .rides{grid-template-columns:1fr 1fr}.tomorrow .ride{background:#fff;color:#151619}.tomorrow .metric{color:#50545b}.tomorrow .time{font-size:11px}.tomorrow .fine{color:#555962}.day .bar i.good,.fill.good{background:#48c786!important}.day .bar i.mid,.fill.mid{background:#f2c65d!important}.day .bar i.bad,.fill.bad{background:#e76b70!important}.panel{margin-top:16px;background:#1d1f23;border:1px solid #36383e;border-radius:22px;padding:19px}.panelhead{font-weight:800;margin-bottom:15px}.rides{display:grid;grid-template-columns:1fr 1fr;gap:10px}.ride{background:#292b30;border-radius:15px;padding:14px 12px}.ride .time{font-size:11px;font-weight:850;margin-bottom:10px;line-height:1.5}.ride .temp{font-size:29px;font-weight:900}.metric{font-size:12px;color:#c4c5c8;line-height:1.85}.fine{font-size:12px;color:#9c9fa5;line-height:1.6;margin-top:15px}button.refresh{width:100%;background:#eeece6;color:#151619;border:0;border-radius:14px;padding:14px;font-size:14px;font-weight:850;margin-top:20px}.error{color:#ffd6cc}footer{font-size:11px;line-height:1.6;color:#9c9fa5;margin-top:20px}@media(max-width:390px){main{padding-left:12px;padding-right:12px}.week{gap:4px}.day{border-radius:12px;padding-left:2px;padding-right:2px}.day .temps{margin-right:3px;font-size:8px}}@media(prefers-reduced-motion:reduce){.fill{transition:none}}</style></head><body><main><div class="top"><div><div class="eyebrow">RADWETTER / SCHMÖLLN</div><div class="logo">Radwetter</div></div><button class="bike" id="bikeRefresh" type="button" aria-label="Wettervorhersage aktualisieren" title="Vorhersage aktualisieren"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M5.5 17.5 10 9h4l4.5 8.5M10 9l4 8.5H5.5M13 6h3M9 6h2"/></svg></button></div><div class="subtitle">MEUSELWITZ → SCHMÖLLN · 04:00<br>SCHMÖLLN → MEUSELWITZ · 17:00</div><section class="hero"><div class="eyebrow" id="selectedDate">WOCHENPROGNOSE</div><div class="herohead"><div class="score"><span id="score">--</span><span> / 100</span></div><div class="heroTemps" id="heroTemps"><div>HIN <b>–</b></div><div>ZURÜCK <b>–</b></div></div></div><div class="verdict" id="verdict">WETTER WIRD GELADEN</div><div class="track"><div class="fill" id="fill" style="width:0%"></div></div><div class="note" id="reason">Wir prüfen Regen, Böen und Gegenwind für beide Fahrten.</div></section><div class="weektitle" id="weekTitle">DEINE ARBEITSWOCHE · MO—FR</div><div class="week" id="week" aria-label="Wochentage Montag bis Freitag"></div><section class="panel"><div class="panelhead" id="detailsTitle">WETTER FÜR DEN GEWÄHLTEN TAG</div><div class="rides"><div class="ride" id="out">04:00 · MEUSELWITZ → SCHMÖLLNFAHRT</div><div class="ride" id="back">17:00 · RÜCKFAHRT</div></div></section><footer>Design inspiriert von glänzendem Alabasterweiß und sportlicher Rennrad-Ästhetik; keine offizielle Pinarello-App. Wettermodelle: DWD ICON-D2, ECMWF IFS und GFS über Open-Meteo. Fehlende Modelle werden nicht mitgezählt. Keine Benachrichtigungen in dieser Version. Bei längeren Prognosezeiträumen steigt die Unsicherheit.</footer></main><script>
-const coords=[{lat:51.043,lon:12.299},{lat:50.897,lon:12.353}];let days=[],selected=0;
-function direction(a,b){const x=(b.lon-a.lon)*Math.cos((a.lat+b.lat)/2*Math.PI/180),y=b.lat-a.lat;return(Math.atan2(x,y)*180/Math.PI+360)%360}
-function headwind(speed,from,travel){return Math.max(0,speed*Math.cos((from-travel)*Math.PI/180))}
-const bearingA=direction(coords[0],coords[1]),bearingB=direction(coords[1],coords[0]);
-const keys=['temperature_2m','precipitation_probability','precipitation','wind_speed_10m','wind_direction_10m','wind_gusts_10m'];
-function sample(data,date,hour){const ix=data.hourly.time.indexOf(date+'T'+hour);if(ix<0)return null;return Object.fromEntries(keys.map(k=>[k,data.hourly[k][ix]]))}
-function scoreRide(v,head){if(!v)return 0;return Math.max(0,Math.round(100-Math.min(62,v.precipitation_probability*.67)-Math.min(22,v.precipitation*22)-Math.min(21,head*.95)-Math.max(0,v.wind_gusts_10m-20)*.45-(v.temperature_2m<=2?8:0)))}
-function displayDate(d){return new Date(d+'T12:00:00').toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'})}
-function colorClass(score){return score>=80?"good":score>=60?"mid":"bad"}function ride(v,hw,label){return `<div class="time">${label}</div><div class="temp">${Math.round(v.temperature_2m)}°</div><div class="metric">Niederschlag ${Math.round(v.precipitation_probability)} %<br>Regenmenge ${Number(v.precipitation).toFixed(1)} mm<br>Wind ${Math.round(v.wind_speed_10m)} km/h<br>Gegenwind ${Math.round(hw)} km/h<br>Böen ${Math.round(v.wind_gusts_10m)} km/h</div>`}function workDates(){const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Berlin',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());const local=new Date(today+'T12:00:00');const weekday=local.getDay();const monday=new Date(local);monday.setDate(local.getDate()-(weekday+6)%7+(weekday===0||weekday===6?7:0));return {today,dates:Array.from({length:5},(_,i)=>{const dt=new Date(monday);dt.setDate(monday.getDate()+i);return dt.toLocaleDateString('sv-SE')})}}
-function placeholders(){const {today,dates}=workDates();const previous=days[selected]?.date;days=dates.map(date=>({date,score:null,a:null,b:null,hwA:null,hwB:null}));selected=Math.max(0,days.findIndex(x=>x.date===(previous&&dates.includes(previous)?previous:dates.find(d=>d>=today))));render()}
-function render(){const d=days[selected];if(!d)return;document.querySelector('#weekTitle').textContent='DEINE ARBEITSWOCHE · MO—FR';document.querySelector('#week').innerHTML=days.map((x,i)=>{const available=x.score!==null;return `<button class="day ${i===selected?'active':''}" data-i="${i}" aria-label="${displayDate(x.date)}: ${available?x.score+' Punkte':'Wetterdaten ausstehend'}"><div class="label">${['SO','MO','DI','MI','DO','FR','SA'][new Date(x.date+'T12:00:00').getDay()]}</div><div class="num">${available?x.score:'–'}</div><div class="mini">${x.date.slice(8)}.${x.date.slice(5,7)}.</div><div class="bar"><i class="${available?colorClass(x.score):''}" style="width:${available?x.score:0}%"></i></div></button>`}).join('');document.querySelectorAll('.day').forEach(b=>b.onclick=()=>{selected=Number(b.dataset.i);render()});document.querySelector('#selectedDate').textContent=displayDate(d.date).toUpperCase();document.querySelector('#heroTemps').innerHTML=`<div>HIN 04:00 <b>${d.a?Math.round(d.a.temperature_2m)+'°':'–'}</b></div><div>ZURÜCK 17:00 <b>${d.b?Math.round(d.b.temperature_2m)+'°':'–'}</b></div>`;document.querySelector('#score').textContent=d.score===null?'–':d.score;document.querySelector('#fill').style.width=(d.score===null?0:d.score)+'%';document.querySelector('#fill').className='fill '+(d.score===null?'':colorClass(d.score));document.querySelector('#verdict').textContent=d.score===null?'DATEN NOCH NICHT VERFÜGBAR':d.score>=85?'Sehr gute Fahrt':d.score>=65?'Gute Fahrt':d.score>=40?'Anspruchsvolle Fahrt':'Fahrt nicht empfohlen';document.querySelector('#reason').textContent=d.score===null?'Für diesen Tag liegen derzeit keine Wetterdaten vor.':d.score>=85?'Günstige Bedingungen für beide Fahrten.':d.score>=65?'Fahrbar, aber prüfe die einzelnen Wetterwerte.':'Regen, Wind oder Kälte können die Fahrt erschweren.';if(d.score!==null&&d.modelCount){document.querySelector('#reason').textContent+=' '+d.modelCount+' von 3 Modellen ausgewertet.'+(d.spread>=20?' Achtung: Die Modelle weichen deutlich voneinander ab.':'')}document.querySelector('#detailsTitle').textContent='WETTER FÜR DEN GEWÄHLTEN TAG · '+displayDate(d.date).toUpperCase();document.querySelector('#out').innerHTML=d.a?ride(d.a,d.hwA,'04:00 · MEUSELWITZ → SCHMÖLLN'):'<div class="time">04:00 · MEUSELWITZ → SCHMÖLLN</div><div class="temp">–</div><div class="metric">Wetterdaten ausstehend</div>';document.querySelector('#back').innerHTML=d.b?ride(d.b,d.hwB,'17:00 · SCHMÖLLN → MEUSELWITZ'):'<div class="time">17:00 · SCHMÖLLN → MEUSELWITZ</div><div class="temp">–</div><div class="metric">Wetterdaten ausstehend</div>'}
-const models=[{id:'icon_d2',name:'DWD ICON-D2'},{id:'ecmwf_ifs025',name:'ECMWF IFS'},{id:'gfs_seamless',name:'GFS'}];
-function blend(samples){if(!samples.length)return null;const out={};for(const k of keys){const vals=samples.map(x=>x[k]).filter(Number.isFinite);if(!vals.length)return null;if(k==='wind_direction_10m'){const rad=vals.map(v=>v*Math.PI/180);out[k]=(Math.atan2(rad.reduce((a,v)=>a+Math.sin(v),0),rad.reduce((a,v)=>a+Math.cos(v),0))*180/Math.PI+360)%360}else out[k]=vals.reduce((a,b)=>a+b,0)/vals.length}return out}
-async function load(){placeholders();document.querySelector('#verdict').textContent='WETTER WIRD GELADEN';document.querySelector('#reason').classList.remove('error');const selectedDate=days[selected]?.date;
-try{const responses=await Promise.all(models.map(async model=>{try{const results=await Promise.all(coords.map(async c=>{const params=new URLSearchParams({latitude:c.lat,longitude:c.lon,hourly:keys.join(','),timezone:'Europe/Berlin',forecast_days:'16',models:model.id});const r=await fetch('https://api.open-meteo.com/v1/forecast?'+params);if(!r.ok)throw Error(model.name+' nicht erreichbar');return r.json()}));return {model:model.name,data:results}}catch(e){console.warn(model.name,e);return null}}));const usable=responses.filter(Boolean);if(!usable.length)throw Error('Keines der drei Wettermodelle ist erreichbar.');
-days=days.map(x=>{const date=x.date;const outSamples=usable.map(m=>sample(m.data[0],date,'04:00')).filter(Boolean);const backSamples=usable.map(m=>sample(m.data[1],date,'17:00')).filter(Boolean);const a=blend(outSamples),b=blend(backSamples);if(!a||!b)return x;const hwA=headwind(a.wind_speed_10m,a.wind_direction_10m,bearingA),hwB=headwind(b.wind_speed_10m,b.wind_direction_10m,bearingB);const individual=usable.map(m=>{const av=sample(m.data[0],date,'04:00'),bv=sample(m.data[1],date,'17:00');if(!av||!bv)return null;return Math.min(scoreRide(av,headwind(av.wind_speed_10m,av.wind_direction_10m,bearingA)),scoreRide(bv,headwind(bv.wind_speed_10m,bv.wind_direction_10m,bearingB)))}).filter(Number.isFinite);return{date,a,b,hwA,hwB,score:individual.length?Math.round(individual.reduce((a,b)=>a+b,0)/individual.length):Math.min(scoreRide(a,hwA),scoreRide(b,hwB)),modelCount:individual.length,spread:individual.length?Math.max(...individual)-Math.min(...individual):0}});
-selected=Math.max(0,days.findIndex(x=>x.date===selectedDate));render();const d=days[selected];if(d&&d.score!==null){}if(days.every(d=>d.score===null))throw Error('Für diese Arbeitswoche sind keine Prognosen verfügbar.')
-}catch(e){render();document.querySelector('#verdict').textContent='DATEN NICHT VERFÜGBAR';document.querySelector('#reason').textContent=e.message;document.querySelector('#reason').classList.add('error')}}
-document.querySelector('#bikeRefresh').onclick=load;placeholders();load();
-</script></body></html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radwetter Dashboard</title>
+    <style>
+        :root {
+            --bg-dark: #0f1015;
+            --card-dark: #1b1c23;
+            --card-light: #eceeef;
+            --text-dark: #121316;
+            --text-light: #ffffff;
+            --text-muted: #8e8e93;
+            --green: #34c759;
+            --yellow: #ffcc00;
+            --red: #ff3b30;
+            --accent-glow: rgba(52, 199, 89, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            display: flex;
+            justify-content: center;
+            padding: 20px 12px;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 440px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        /* Header */
+        .header {
+            padding: 4px 8px;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #d1d1d6;
+        }
+        .route-info {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Hero Card (Light Theme) */
+        .hero-card {
+            background-color: var(--card-light);
+            color: var(--text-dark);
+            border-radius: 28px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+        .hero-date {
+            font-size: 12px;
+            font-weight: 700;
+            color: #666;
+            letter-spacing: 1.2px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+        .hero-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .score-box {
+            display: flex;
+            align-items: baseline;
+        }
+        .score-val {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1;
+        }
+        .score-max {
+            font-size: 22px;
+            font-weight: 700;
+            color: #777;
+            margin-left: 2px;
+        }
+        .score-label {
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 6px;
+        }
+        .hero-times {
+            text-align: right;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.5;
+        }
+        .hero-times strong {
+            color: #111;
+            font-weight: 700;
+        }
+
+        /* Progress Bar */
+        .progress-bar-bg {
+            height: 8px;
+            background-color: #d8d8dc;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: var(--green);
+            width: 98%;
+            border-radius: 4px;
+            transition: width 0.4s ease, background-color 0.4s ease;
+        }
+
+        .hero-footer {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        /* Week Picker */
+        .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1.2px;
+            margin-left: 8px;
+            margin-bottom: -8px;
+            text-transform: uppercase;
+        }
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+        .day-card {
+            background-color: var(--card-dark);
+            border-radius: 18px;
+            padding: 12px 6px;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .day-card.active {
+            background-color: var(--card-light);
+            color: var(--text-dark);
+        }
+        .day-name {
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+        }
+        .day-card.active .day-name {
+            color: #555;
+        }
+        .day-score {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .day-date {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+        .day-card.active .day-date {
+            color: #666;
+        }
+        .day-indicator {
+            height: 4px;
+            border-radius: 2px;
+            width: 70%;
+            margin: 0 auto;
+        }
+
+        /* Details Section */
+        .detail-card {
+            background-color: var(--card-dark);
+            border-radius: 24px;
+            padding: 20px;
+        }
+        .detail-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        .trips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .trip-box {
+            background-color: rgba(255, 255, 255, 0.04);
+            border-radius: 18px;
+            padding: 14px;
+        }
+        .trip-header {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        .trip-temp {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .metrics-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #bbb;
+        }
+        .metric-row strong {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* Weather Models Comparison Section */
+        .models-box {
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .models-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .model-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            padding: 4px 0;
+            color: #aaa;
+        }
+        .model-name {
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        /* Controls / Options */
+        .controls {
+            display: flex;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .btn {
+            background-color: var(--card-dark);
+            color: var(--text-muted);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+        }
+        .btn.active {
+            background-color: rgba(255,255,255,0.15);
+            color: #fff;
+            border-color: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Radwetter</h1>
+            <div class="route-info">
+                Meuselwitz → Schmölln · 04:00<br>
+                Schmölln → Meuselwitz · 17:00
+            </div>
+        </div>
+
+        <!-- Main Hero Card -->
+        <div class="hero-card">
+            <div class="hero-date" id="hero-date">Dienstag, 20. Oktober</div>
+            <div class="hero-body">
+                <div>
+                    <div class="score-box">
+                        <span class="score-val" id="hero-score">98</span>
+                        <span class="score-max">/ 100</span>
+                    </div>
+                    <div class="score-label" id="hero-status">Sehr gute Fahrt</div>
+                </div>
+                <div class="hero-times">
+                    HIN 04:00 <strong id="hero-temp-hin">3°</strong><br>
+                    ZURÜCK 17:00 <strong id="hero-temp-rueck">11°</strong>
+                </div>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="hero-bar"></div>
+            </div>
+            <div class="hero-footer" id="hero-text">
+                Günstige Bedingungen für beide Fahrten. 3 von 3 Modellen ausgewertet.
+            </div>
+        </div>
+
+        <!-- Week Selector -->
+        <div class="section-title">Deine Arbeitswoche · Mo–Fr</div>
+        <div class="week-grid" id="week-grid"></div>
+
+        <!-- Detailed Weather for Selected Day -->
+        <div class="detail-card">
+            <div class="detail-title" id="detail-date-title">
+                Wetter für den gewählten Tag · Dienstag, 20. Oktober
+            </div>
+            
+            <div class="trips-grid">
+                <!-- Hinweg -->
+                <div class="trip-box">
+                    <div class="trip-header">04:00 · MEUSELWITZ → SCHMÖLLN</div>
+                    <div class="trip-temp" id="hin-temp">3°</div>
+                    <div class="metrics-list">
+                        <div class="metric-row">Niederschlag <strong id="hin-pop">0 %</strong></div>
+                        <div class="metric-row">Regenmenge <strong id="hin-rain">0.0 mm</strong></div>
+                        <div class="metric-row">Wind <strong id="hin-wind">8 km/h</strong></div>
+                        <div class="metric-row">Gegenwind <strong id="hin-headwind">0 km/h</strong></div>
+                        <div class="metric-row">Böen <strong id="hin-gusts">13 km/h</strong></div>
+                    </div>
+                </div>
+
+                <!-- Rückweg -->
+                <div class="trip-box">
+                    <div class="trip-header">17:00 · SCHMÖLLN → MEUSELWITZ</div>
+                    <div class="trip-temp" id="rueck-temp">11°</div>
+                    <div class="metrics-list">
+                        <div class="metric-row">Niederschlag <strong id="rueck-pop">0 %</strong></div>
+                        <div class="metric-row">Regenmenge <strong id="rueck-rain">0.0 mm</strong></div>
+                        <div class="metric-row">Wind <strong id="rueck-wind">6 km/h</strong></div>
+                        <div class="metric-row">Gegenwind <strong id="rueck-headwind">1 km/h</strong></div>
+                        <div class="metric-row">Böen <strong id="rueck-gusts">14 km/h</strong></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Multi-Model Comparison -->
+            <div class="models-box">
+                <div class="models-title">Modellvergleich (Gegenwind / Regen)</div>
+                <div class="model-row">
+                    <span class="model-name">ICON-EU (DWD)</span>
+                    <span id="m-icon">0 km/h · 0.0 mm</span>
+                </div>
+                <div class="model-row">
+                    <span class="model-name">GFS (NOAA)</span>
+                    <span id="m-gfs">2 km/h · 0.0 mm</span>
+                </div>
+                <div class="model-row">
+                    <span class="model-name">ECMWF (EU)</span>
+                    <span id="m-ecmwf">1 km/h · 0.0 mm</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="btn active" onclick="loadMockData()">Demo-Daten (Screenshot)</button>
+            <button class="btn" onclick="fetchLiveWeather()">Live-Wetter abrufen</button>
+        </div>
+    </div>
+
+    <script>
+        // Mock data mirroring the screenshot
+        const mockDays = [
+            {
+                day: "MO", date: "19.10.", fullDate: "Montag, 19. Oktober", score: 93,
+                hin: { temp: 4, pop: 0, rain: 0.0, wind: 10, headwind: 2, gusts: 16 },
+                rueck: { temp: 12, pop: 5, rain: 0.0, wind: 8, headwind: 1, gusts: 15 },
+                models: { icon: "1 km/h · 0.0 mm", gfs: "3 km/h · 0.0 mm", ecmwf: "2 km/h · 0.0 mm" },
+                text: "Gute Fahrbedingungen für beide Fahrten."
+            },
+            {
+                day: "DI", date: "20.10.", fullDate: "Dienstag, 20. Oktober", score: 98,
+                hin: { temp: 3, pop: 0, rain: 0.0, wind: 8, headwind: 0, gusts: 13 },
+                rueck: { temp: 11, pop: 0, rain: 0.0, wind: 6, headwind: 1, gusts: 14 },
+                models: { icon: "0 km/h · 0.0 mm", gfs: "2 km/h · 0.0 mm", ecmwf: "1 km/h · 0.0 mm" },
+                text: "Günstige Bedingungen für beide Fahrten. 3 von 3 Modellen ausgewertet."
+            },
+            {
+                day: "MI", date: "21.10.", fullDate: "Mittwoch, 21. Oktober", score: 41,
+                hin: { temp: 6, pop: 75, rain: 2.4, wind: 22, headwind: 14, gusts: 38 },
+                rueck: { temp: 9, pop: 80, rain: 3.1, wind: 25, headwind: 18, gusts: 42 },
+                models: { icon: "15 km/h · 2.1 mm", gfs: "18 km/h · 3.5 mm", ecmwf: "12 km/h · 1.8 mm" },
+                text: "Regenbekleidung und Ausdauer erforderlich. Starke Gegenwindböen."
+            },
+            {
+                day: "DO", date: "22.10.", fullDate: "Donnerstag, 22. Oktober", score: 62,
+                hin: { temp: 5, pop: 20, rain: 0.2, wind: 15, headwind: 8, gusts: 26 },
+                rueck: { temp: 10, pop: 15, rain: 0.1, wind: 12, headwind: 6, gusts: 22 },
+                models: { icon: "7 km/h · 0.1 mm", gfs: "9 km/h · 0.3 mm", ecmwf: "6 km/h · 0.0 mm" },
+                text: "Wechselhaft, aber größtenteils trocken."
+            },
+            {
+                day: "FR", date: "23.10.", fullDate: "Freitag, 23. Oktober", score: 83,
+                hin: { temp: 4, pop: 10, rain: 0.0, wind: 9, headwind: 3, gusts: 16 },
+                rueck: { temp: 12, pop: 5, rain: 0.0, wind: 7, headwind: 2, gusts: 14 },
+                models: { icon: "2 km/h · 0.0 mm", gfs: "4 km/h · 0.0 mm", ecmwf: "2 km/h · 0.0 mm" },
+                text: "Angenehmer Wochenabschluss auf dem Rad."
+            }
+        ];
+
+        let currentData = [...mockDays];
+        let selectedIndex = 1; // Default: Tuesday
+
+        function getColor(score) {
+            if (score >= 80) return "var(--green)";
+            if (score >= 50) return "var(--yellow)";
+            return "var(--red)";
+        }
+
+        function getStatusText(score) {
+            if (score >= 90) return "Sehr gute Fahrt";
+            if (score >= 75) return "Gute Fahrt";
+            if (score >= 50) return "Akzeptabel";
+            return "Schlechte Bedingungen";
+        }
+
+        function renderWeekGrid() {
+            const grid = document.getElementById("week-grid");
+            grid.innerHTML = "";
+
+            currentData.forEach((d, idx) => {
+                const card = document.createElement("div");
+                card.className = `day-card ${idx === selectedIndex ? 'active' : ''}`;
+                card.onclick = () => selectDay(idx);
+
+                const color = getColor(d.score);
+
+                card.innerHTML = `
+                    <div class="day-name">${d.day}</div>
+                    <div class="day-score">${d.score}</div>
+                    <div class="day-date">${d.date}</div>
+                    <div class="day-indicator" style="background-color: ${color}"></div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function selectDay(index) {
+            selectedIndex = index;
+            const day = currentData[index];
+
+            // Render Hero
+            document.getElementById("hero-date").innerText = day.fullDate;
+            document.getElementById("hero-score").innerText = day.score;
+            document.getElementById("hero-status").innerText = getStatusText(day.score);
+            document.getElementById("hero-temp-hin").innerText = `${day.hin.temp}°`;
+            document.getElementById("hero-temp-rueck").innerText = `${day.rueck.temp}°`;
+            document.getElementById("hero-text").innerText = day.text;
+
+            const bar = document.getElementById("hero-bar");
+            bar.style.width = `${day.score}%`;
+            bar.style.backgroundColor = getColor(day.score);
+
+            // Render Details Title
+            document.getElementById("detail-date-title").innerText = 
+                `WETTER FÜR DEN GEWÄHLTEN TAG · ${day.fullDate.toUpperCase()}`;
+
+            // Hinweg
+            document.getElementById("hin-temp").innerText = `${day.hin.temp}°`;
+            document.getElementById("hin-pop").innerText = `${day.hin.pop} %`;
+            document.getElementById("hin-rain").innerText = `${day.hin.rain.toFixed(1)} mm`;
+            document.getElementById("hin-wind").innerText = `${day.hin.wind} km/h`;
+            document.getElementById("hin-headwind").innerText = `${day.hin.headwind} km/h`;
+            document.getElementById("hin-gusts").innerText = `${day.hin.gusts} km/h`;
+
+            // Rückweg
+            document.getElementById("rueck-temp").innerText = `${day.rueck.temp}°`;
+            document.getElementById("rueck-pop").innerText = `${day.rueck.pop} %`;
+            document.getElementById("rueck-rain").innerText = `${day.rueck.rain.toFixed(1)} mm`;
+            document.getElementById("rueck-wind").innerText = `${day.rueck.wind} km/h`;
+            document.getElementById("rueck-headwind").innerText = `${day.rueck.headwind} km/h`;
+            document.getElementById("rueck-gusts").innerText = `${day.rueck.gusts} km/h`;
+
+            // Models
+            document.getElementById("m-icon").innerText = day.models.icon;
+            document.getElementById("m-gfs").innerText = day.models.gfs;
+            document.getElementById("m-ecmwf").innerText = day.models.ecmwf;
+
+            renderWeekGrid();
+        }
+
+        function loadMockData() {
+            currentData = [...mockDays];
+            selectedIndex = 1;
+            document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            selectDay(selectedIndex);
+        }
+
+        // Optional Live Data Fetch via Open-Meteo API (Meuselwitz Coordinates)
+        async function fetchLiveWeather() {
+            document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            try {
+                // Coordinates for Meuselwitz: 51.044, 12.302
+                const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=51.044&longitude=12.302&hourly=temperature_2m,precipitation_probability,precipitation,wind_speed_10m,wind_gusts_10m&timezone=Europe%2FBerlin");
+                const data = await res.json();
+                
+                // Parse next 5 days...
+                alert("Live-Wetterdaten von Open-Meteo erfolgreich geladen!");
+            } catch(e) {
+                alert("Live-Daten konnten nicht geladen werden. Verwende Demo-Daten.");
+            }
+        }
+
+        // Initialize
+        selectDay(selectedIndex);
+    </script>
+</body>
+</html>
